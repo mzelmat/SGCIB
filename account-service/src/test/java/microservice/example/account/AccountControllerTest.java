@@ -45,9 +45,9 @@ public class AccountControllerTest {
 	public void init() {
 		amount = new MonetaryAmount(BigDecimal.valueOf(300.90));
 		accountWithdraw = Account.builder().id(1L).customerNumber(75000000101L)
-				.solde(BigDecimal.valueOf(2500.45)).accountNumber(75000000001L).build();
+				.solde(BigDecimal.valueOf(2500.45)).accountNumber("75000000001").build();
 		accountDeposit = Account.builder().id(2L).customerNumber(75000000102L)
-				.solde(BigDecimal.valueOf(250.45)).accountNumber(75000000002L).build();
+				.solde(BigDecimal.valueOf(250.45)).accountNumber("75000000002").build();
 
 	}
 	
@@ -63,7 +63,7 @@ public class AccountControllerTest {
 				.andExpect(status().isOk())
 				.andExpect(
 						content()
-								.json("{'id':2, 'accountNumber': 75000000002, 'solde': 250.45, 'customerNumber': 75000000102}"));
+								.json("{'id':2, 'accountNumber': \"75000000002\", 'solde': 250.45, 'customerNumber': 75000000102}"));
 	}
 
 	@Test
@@ -78,7 +78,7 @@ public class AccountControllerTest {
 				.andExpect(status().isOk())
 				.andExpect(
 						content()
-								.json("{'id':1, 'accountNumber': 75000000001, 'solde': 2500.45, 'customerNumber': 75000000101}"));
+								.json("{'id':1, 'accountNumber': \"75000000001\", 'solde': 2500.45, 'customerNumber': 75000000101}"));
 	}
 
 }
