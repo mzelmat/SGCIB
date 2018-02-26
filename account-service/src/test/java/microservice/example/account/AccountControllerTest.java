@@ -7,6 +7,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.math.BigDecimal;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,17 +37,17 @@ public class AccountControllerTest {
 	private AccountService accountService;
 
 	private ObjectMapper mapper = new ObjectMapper();
-	private Amount amount;
+	private MonetaryAmount amount;
 	private Account accountWithdraw;
 	private Account accountDeposit;
 
 	@Before
 	public void init() {
-		amount = new Amount(300L);
+		amount = new MonetaryAmount(BigDecimal.valueOf(300.90));
 		accountWithdraw = Account.builder().id(1L).customerNumber(75000000101L)
-				.solde(2500).accountNumber(75000000001L).build();
+				.solde(BigDecimal.valueOf(2500.45)).accountNumber(75000000001L).build();
 		accountDeposit = Account.builder().id(2L).customerNumber(75000000102L)
-				.solde(250).accountNumber(75000000002L).build();
+				.solde(BigDecimal.valueOf(250.45)).accountNumber(75000000002L).build();
 
 	}
 	
@@ -61,7 +63,7 @@ public class AccountControllerTest {
 				.andExpect(status().isOk())
 				.andExpect(
 						content()
-								.json("{'id':2, 'accountNumber': 75000000002, 'solde': 250, 'customerNumber': 75000000102}"));
+								.json("{'id':2, 'accountNumber': 75000000002, 'solde': 250.45, 'customerNumber': 75000000102}"));
 	}
 
 	@Test
@@ -76,7 +78,7 @@ public class AccountControllerTest {
 				.andExpect(status().isOk())
 				.andExpect(
 						content()
-								.json("{'id':1, 'accountNumber': 75000000001, 'solde': 2500, 'customerNumber': 75000000101}"));
+								.json("{'id':1, 'accountNumber': 75000000001, 'solde': 2500.45, 'customerNumber': 75000000101}"));
 	}
 
 }
