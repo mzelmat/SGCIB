@@ -20,14 +20,14 @@ public class AccountController {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	@Autowired
-	private OperationServiceProxy proxy;
+	private final  OperationServiceProxy proxy;
 
 	private final AccountService accountService;
 
 	@Autowired
-	public AccountController(AccountService accountService) {
+	public AccountController(AccountService accountService, OperationServiceProxy operationService) {
 		this.accountService = accountService;
+		this.proxy = operationService;
 	}
 
 	@PutMapping("/account/{accountNumber}/operation/{operationType}")
