@@ -18,29 +18,30 @@ public class AccountService {
 	}
 
 	@Transactional
-	public Account updateSolde(Amount amount, String accountNum,
+	public Account updateSolde(MonetaryAmount amount, String accountNum,
 			OperationType deposit) {
 		Account account = fetchByAccountNumber(accountNum).orElseThrow(
 				() -> new AccountNotFoundException(
-						"Account not found, please check your account number"));
+						"Account not found"));
 		switch (deposit) {
 		case DEPOSIT:
 			return accountRepository.save(Account.builder().id(account.getId())
-					.solde(account.getSolde() + amount.getValue())
+					.solde(account.getSolde().add(amount.getAmount()))
 					.accountNumber(account.getAccountNumber())
 					.customerNumber(account.getCustomerNumber()).build());
 		case WITHDRAWL:
-			if (amount.getValue() > account.getSolde()) {
+			if (amount.getAmount().compareTo(account.getSolde()) > 0) {
 				throw new SoldeInsuffisantException(
-						"Votre solde est insuffisant, l'opération est annulée.");
+						"Votre solde est insuffisant");
 			}
 			return accountRepository.save(Account.builder().id(account.getId())
-					.solde(account.getSolde() - amount.getValue())
+					.solde(account.getSolde().subtract(amount.getAmount()))
 					.accountNumber(account.getAccountNumber())
 					.customerNumber(account.getCustomerNumber()).build());
 		default:
 			throw new IllegalArgumentException(
-					"Le type d'opération donné ne correspondant à aucun type.");
+					"Le type d'opération donné ne correspondant");
 		}
 	}
 }
+
