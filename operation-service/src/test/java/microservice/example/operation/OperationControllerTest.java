@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import microservice.example.operation.Operation;
@@ -34,24 +35,24 @@ public class OperationControllerTest {
 	@MockBean
 	private OperationService operationService;
 
-	private Operation depot;
-	private Operation retrait;
+	private Operation deposit;
+	private Operation withdrawl;
 
 	@Before
 	public void init() {
 
-		depot = Operation.builder().id(1L).amount(2500L)
-				.accountDate(LocalDate.of(2017, 10, 10)).accountNumber(75000000001L)
+		deposit = Operation.builder().id(1L).amount(BigDecimal.valueOf(2500))
+				.accountDate(LocalDate.of(2017, 10, 10)).accountNumber("75000000001")
 				.operationType(DEPOSIT).build();
-		retrait = Operation.builder().id(2L).amount(250L)
-				.accountDate(LocalDate.of(2018, 02, 14)).accountNumber(75000000001L)
+		withdrawl = Operation.builder().id(2L).amount(BigDecimal.valueOf(250))
+				.accountDate(LocalDate.of(2018, 02, 14)).accountNumber("75000000001")
 				.operationType(WITHDRAWL).build();
 	}
 
 	@Test
 	public void should_fetch_all_account_history() throws Exception {
-		doReturn(of(depot, retrait)).when(operationService)
-				.findByAccountNumber(75000000001L);
+		doReturn(of(deposit, withdrawl)).when(operationService)
+				.findByAccountNumber("75000000001");
 
 		mockMvc.perform(
 				get("/operations/75000000001/history/").contentType(
@@ -59,8 +60,8 @@ public class OperationControllerTest {
 				.andExpect(status().isOk())
 				.andExpect(
 						content()
-								.json("[{'id':1, accountDate:[2017,10,10], amount:2500, operationType:'DEPOSIT', accountNumber:75000000001},"
-										+ " {'id':2, accountDate:[2018,2,14], amount:250, operationType:'WITHDRAWL', accountNumber:75000000001}"
+								.json("[{'id':1, accountDate:[2017,10,10], amount:2500, operationType:'DEPOSIT', accountNumber:\"75000000001\"},"
+										+ " {'id':2, accountDate:[2018,2,14], amount:250, operationType:'WITHDRAWL', accountNumber:\"75000000001\"}"
 										+ "]"));
 	}
 }
