@@ -13,4 +13,4 @@ Request 1 : http://localhost:8100/accounts/75000000001/history
 
 Request 2 : http://localhost:8000/operations/75000000001/history
 
-[{"id":1,"accountDate":[2017,10,10],"amount":2500,"operationType":"DEPOSIT","accountNumber":75000000001}]
+[{"id":1,"accountDate":[2017,10,10],"amount":2500,"operationType":"DEPOSIT","accountNumber":75000000001}]# Bank-account
