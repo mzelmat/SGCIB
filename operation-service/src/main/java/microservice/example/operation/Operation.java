@@ -1,6 +1,7 @@
 package microservice.example.operation;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -39,14 +40,13 @@ public class Operation implements Serializable {
 
 	private final LocalDate accountDate;
 
-	private final Long amount;
+	private final BigDecimal amount;
 
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	private final OperationType operationType;
 
 	@NotNull
-	@Column(unique = true)
 	private final long accountNumber;
 
 	public Operation() {
@@ -57,7 +57,7 @@ public class Operation implements Serializable {
 		this.accountNumber = 0;
 	}
 
-	public Operation(long id, LocalDate accountDate, Long amount,
+	public Operation(long id, LocalDate accountDate, BigDecimal amount,
 			OperationType operationType, long accountNumber) {
 		this.id = id;
 		this.accountDate = accountDate;
