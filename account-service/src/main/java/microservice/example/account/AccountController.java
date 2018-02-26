@@ -20,6 +20,7 @@ public class AccountController {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
+	
 	private final  OperationServiceProxy proxy;
 
 	private final AccountService accountService;
@@ -33,7 +34,7 @@ public class AccountController {
 	@PutMapping("/account/{accountNumber}/operation/{operationType}")
 	public Account updateSolde(@PathVariable String accountNumber,
 			@PathVariable OperationType operationType,
-			@RequestBody Amount amount) {
+			@RequestBody MonetaryAmount amount) {
 		return accountService.updateSolde(amount, accountNumber, operationType);
 	}
 
