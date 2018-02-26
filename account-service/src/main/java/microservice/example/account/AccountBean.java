@@ -1,5 +1,6 @@
 package microservice.example.account;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import lombok.Builder;
@@ -10,7 +11,7 @@ import lombok.Data;
 public class AccountBean {
 	private final long id;
 	private final LocalDate accountDate;
-	private final Long amount;
+	private final BigDecimal amount;
 	private final OperationType operationType;
 	private final long accountNumber;
 	
@@ -22,7 +23,7 @@ public class AccountBean {
 		this.accountNumber = 0;
 	}
 	
-	public AccountBean(long id, LocalDate accountDate, Long amount,
+	public AccountBean(long id, LocalDate accountDate, BigDecimal amount,
 			OperationType operationType, long accountNumber) {
 		this.id = id;
 		this.accountDate = accountDate;
@@ -30,4 +31,6 @@ public class AccountBean {
 		this.operationType = operationType;
 		this.accountNumber = accountNumber;
 	}
+	
+	
 }
