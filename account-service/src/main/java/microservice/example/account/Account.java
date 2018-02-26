@@ -1,6 +1,7 @@
 package microservice.example.account;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,7 +39,7 @@ public class Account implements Serializable {
 	@Column(unique = true)
 	private final long accountNumber;
 
-	private final long solde;
+	private final BigDecimal solde;
 
 	@NotNull
 	@Column(unique = true)
@@ -47,11 +48,11 @@ public class Account implements Serializable {
 	public Account() {
 		this.id = 0;
 		this.accountNumber = 0;
-		this.solde = 0;
+		this.solde = null;
 		this.customerNumber = 0;
 	}
 
-	public Account(long id, long accountNumber, long solde, long customerNumber) {
+	public Account(long id, long accountNumber, BigDecimal solde, long customerNumber) {
 		this.id = id;
 		this.accountNumber = accountNumber;
 		this.solde = solde;
