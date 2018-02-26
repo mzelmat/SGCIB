@@ -6,7 +6,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 
 @SpringBootApplication
-@EnableFeignClients("microservice.example.account")
+@EnableFeignClients
 @EnableDiscoveryClient
 public class AccountServiceApplication {
 
@@ -14,3 +14,4 @@ public class AccountServiceApplication {
 		SpringApplication.run(AccountServiceApplication.class, args);
 	}
 }
+
