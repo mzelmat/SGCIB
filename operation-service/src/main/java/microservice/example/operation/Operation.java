@@ -47,18 +47,18 @@ public class Operation implements Serializable {
 	private final OperationType operationType;
 
 	@NotNull
-	private final long accountNumber;
+	private final String accountNumber;
 
 	public Operation() {
 		this.id = 0;
 		this.accountDate = null;
 		this.amount = null;
 		this.operationType = null;
-		this.accountNumber = 0;
+		this.accountNumber = null;
 	}
 
 	public Operation(long id, LocalDate accountDate, BigDecimal amount,
-			OperationType operationType, long accountNumber) {
+			OperationType operationType, String accountNumber) {
 		this.id = id;
 		this.accountDate = accountDate;
 		this.amount = amount;
