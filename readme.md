@@ -4,10 +4,10 @@ You can launch up Eureka at http://localhost:8761
 
 Connect Account and Operation Microservices with Eureka.
 
-Currently we have the following services up and running
+Currently you have the following services up and running
 
 Account Micro Service (Account-Service) on 8100
-Two instances of Operation MicroService on 8000 and 8001
+One or Two instances of Operation MicroService on 8000 and 8001
 
 # Request 1 : 
 http://localhost:8100/accounts/75000000001/history
