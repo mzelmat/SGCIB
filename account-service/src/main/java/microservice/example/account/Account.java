@@ -37,7 +37,7 @@ public class Account implements Serializable {
 
 	@NotNull
 	@Column(unique = true)
-	private final long accountNumber;
+	private final String accountNumber;
 
 	private final BigDecimal solde;
 
@@ -47,12 +47,12 @@ public class Account implements Serializable {
 
 	public Account() {
 		this.id = 0;
-		this.accountNumber = 0;
+		this.accountNumber = null;
 		this.solde = null;
 		this.customerNumber = 0;
 	}
 
-	public Account(long id, long accountNumber, BigDecimal solde, long customerNumber) {
+	public Account(long id, String accountNumber, BigDecimal solde, long customerNumber) {
 		this.id = id;
 		this.accountNumber = accountNumber;
 		this.solde = solde;
