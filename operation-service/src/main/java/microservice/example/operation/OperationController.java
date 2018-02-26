@@ -18,7 +18,7 @@ public class OperationController {
 	}
 
 	@GetMapping("/operations/{accountNumber}/history")
-	public List<Operation> getAccountHistory(@PathVariable long accountNumber) {
+	public List<Operation> getAccountHistory(@PathVariable String accountNumber) {
 		return operationService.findByAccountNumber(accountNumber);
 	}
 }
