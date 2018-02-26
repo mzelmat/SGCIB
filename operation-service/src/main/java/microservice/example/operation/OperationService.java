@@ -11,7 +11,8 @@ public class OperationService {
 	@Autowired
 	private OperationRepository operationRepository;
 
-	public List<Operation> findByAccountNumber(long accountNumber) {
+	public List<Operation> findByAccountNumber(String accountNumber) {
 		return operationRepository.findByAccountNumber(accountNumber);
 	}
 }
+
