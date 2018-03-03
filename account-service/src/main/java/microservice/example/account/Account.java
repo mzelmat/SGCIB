@@ -45,11 +45,11 @@ public class Account implements Serializable {
 	@Column(unique = true)
 	private final long customerNumber;
 
+	/**
+	 * For Hibernate.
+	 */
 	public Account() {
-		this.id = 0;
-		this.accountNumber = null;
-		this.solde = null;
-		this.customerNumber = 0;
+		this(0, null, null, 0);
 	}
 
 	public Account(long id, String accountNumber, BigDecimal solde, long customerNumber) {
