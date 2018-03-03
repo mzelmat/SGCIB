@@ -49,12 +49,11 @@ public class Operation implements Serializable {
 	@NotNull
 	private final String accountNumber;
 
+	/**
+	 * For Hibernate.
+	 */
 	public Operation() {
-		this.id = 0;
-		this.accountDate = null;
-		this.amount = null;
-		this.operationType = null;
-		this.accountNumber = null;
+		this(0, null, null, null, null);
 	}
 
 	public Operation(long id, LocalDate accountDate, BigDecimal amount,
